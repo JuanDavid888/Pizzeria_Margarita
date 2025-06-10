@@ -43,6 +43,11 @@ CREATE TABLE `cliente`(
     INDEX (nombre)
 );
 
+CREATE TABLE `tipo_producto`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nombre` VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE `producto`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nombre` VARCHAR(100) NOT NULL UNIQUE,
@@ -51,9 +56,30 @@ CREATE TABLE `producto`(
 );
 
 CREATE TABLE `combo`(
-    `id` INT NOT NULL PRIMARY KEY,
-    `nombre` VARCHAR(100) NOT NULL UNIQUE,
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nombre` VARCHAR(100) NOT NULL,
     `precio` DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE `producto_combo`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `producto_id` INT NOT NULL,
+    `combo_id` INT NOT NULL,
+    INDEX (producto_id,combo_id)
+);
+
+CREATE TABLE `metodo_pago`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nombre` VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE `pedido`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `fecha_recogida` DATETIME NOT NULL,
+    `total` DECIMAL(10, 2) NOT NULL,
+    `cliente_id` INT NOT NULL,
+    `metodo_pago_id` INT NOT NULL,
+    INDEX (cliente_id,metodo_pago_id)
 );
 
 CREATE TABLE `detalle_pedido`(
@@ -74,18 +100,11 @@ CREATE TABLE `factura`(
     INDEX (pedido_id,cliente_id)
 );
 
-CREATE TABLE `pedido`(
+CREATE TABLE `ingrediente`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `fecha_recogida` DATETIME NOT NULL,
-    `total` DECIMAL(10, 2) NOT NULL,
-    `cliente_id` INT NOT NULL,
-    `metodo_pago_id` INT NOT NULL,
-    INDEX (cliente_id,metodo_pago_id)
-);
-
-CREATE TABLE `metodo_pago`(
-    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nombre` VARCHAR(100) NOT NULL
+    `nombre` VARCHAR(100) NOT NULL UNIQUE,
+    `stock` INT NOT NULL,
+    `precio` DECIMAL(10, 2) NOT NULL
 );
 
 CREATE TABLE `ingrediente_extra`(
@@ -96,21 +115,9 @@ CREATE TABLE `ingrediente_extra`(
     INDEX (detalle_pedido_id,ingrediente_id)
 );
 
-CREATE TABLE `tipo_producto`(
-    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nombre` VARCHAR(100) NOT NULL
-);
-
 CREATE TABLE `presentacion`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nombre` VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE `ingrediente`(
-    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nombre` VARCHAR(100) NOT NULL UNIQUE,
-    `stock` INT NOT NULL,
-    `precio` DECIMAL(10, 2) NOT NULL
 );
 
 CREATE TABLE `producto_presentacion`(
@@ -119,13 +126,6 @@ CREATE TABLE `producto_presentacion`(
     `presentacion_id` INT NOT NULL,
     `precio` DECIMAL(10, 2) NOT NULL,
     INDEX (producto_id,presentacion_id)
-);
-
-CREATE TABLE `producto_combo`(
-    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `producto_id` INT NOT NULL,
-    `combo_id` INT NOT NULL,
-    INDEX (producto_id,combo_id)
 );
 
 -- Foraneas de las tablas
