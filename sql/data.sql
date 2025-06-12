@@ -1,4 +1,4 @@
--- Active: 1749640455806@@127.0.0.1@3307@pizzeria_margarita
+-- Active: 1749726759608@@127.0.0.1@3307@pizzeria_margarita
 
 SHOW TABLES;
 
@@ -89,13 +89,13 @@ VALUES(1, 1, 5),
 (1, 4, 6)
 
 INSERT INTO presentacion (nombre)
-VALUES('Grande'),
+VALUES('Pequeno'),
 ('Mediano'),
-('Pequeno')
+('Grande')
 
 INSERT INTO producto_presentacion (producto_id, presentacion_id, precio)
-VALUES(1, 1, 35000),
-(2, 2, 7000),
-(3, 3, 26000),
-(3, 1, 42000),
-(4, 2, 3000)
+VALUES(1, 1, 30000),
+(1, 2, 50000),
+(1, 3, 65000),
+(2, 1, 3000),
+(3, 1, 35000)
