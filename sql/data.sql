@@ -1,4 +1,4 @@
--- Active: 1749726759608@@127.0.0.1@3307@pizzeria
+-- Active: 1749677667486@@127.0.0.1@3307@pizzeria
 
 SHOW TABLES;
 
@@ -62,6 +62,25 @@ VALUES('2025-05-21', 32000, 1, 1),
 ('2025-06-12', 4000, 2, 2),
 ('2025-06-12', 45000, 3, 3)
 
+INSERT INTO presentacion (nombre)
+VALUES('Pequeno'),
+('Mediano'),
+('Grande')
+
+INSERT INTO producto_presentacion (producto_id, presentacion_id, precio)
+VALUES(1, 1, 30000),
+(1, 2, 50000),
+(1, 3, 65000),
+(2, 1, 3000),
+(2, 2, 5000),
+(2, 3, 9000),
+(3, 1, 35000),
+(3, 2, 45000),
+(3, 3, 60000),
+(4, 1, 2500),
+(4, 2, 5000),
+(4, 3, 7500)
+
 INSERT INTO detalle_pedido (cantidad, pedido_id, producto_presentacion_id, tipo_combo)
 VALUES(1, 1, 1, 'Combo'), -- Camper floral
 (1, 1, 10, 'Combo'), -- Camper floral
@@ -87,22 +106,3 @@ INSERT INTO ingrediente_extra (cantidad, detalle_pedido_id, ingrediente_id)
 VALUES(1, 1, 5),
 (1, 1, 6),
 (1, 4, 6)
-
-INSERT INTO presentacion (nombre)
-VALUES('Pequeno'),
-('Mediano'),
-('Grande')
-
-INSERT INTO producto_presentacion (producto_id, presentacion_id, precio)
-VALUES(1, 1, 30000),
-(1, 2, 50000),
-(1, 3, 65000),
-(2, 1, 3000),
-(2, 2, 5000),
-(2, 3, 9000),
-(3, 1, 35000),
-(3, 2, 45000),
-(3, 3, 60000),
-(4, 1, 2500),
-(4, 2, 5000),
-(4, 3, 7500)
