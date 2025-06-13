@@ -62,11 +62,11 @@ VALUES('2025-05-21', 32000, 1, 1),
 ('2025-06-12', 4000, 2, 2),
 ('2025-06-12', 45000, 3, 3)
 
-INSERT INTO detalle_pedido (cantidad, pedido_id, producto_id)
-VALUES(1, 1, 1), -- Camper floral
-(1, 1, 4), -- Camper floral
-(2, 2, 2),
-(1, 3, 3)
+INSERT INTO detalle_pedido (cantidad, pedido_id, producto_presentacion_id, tipo_combo)
+VALUES(1, 1, 1, 'Combo'), -- Camper floral
+(1, 1, 10, 'Combo'), -- Camper floral
+(2, 2, 4, 'Producto individual'),
+(1, 3, 7, 'Producto individual')
 
 INSERT INTO factura (cliente, total, fecha, pedido_id, cliente_id)
 VALUES('Adrian Ruiz', 32000, '2025-05-21', 1, 1),

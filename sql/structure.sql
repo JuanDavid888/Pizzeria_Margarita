@@ -86,8 +86,9 @@ CREATE TABLE `detalle_pedido`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `cantidad` INT NOT NULL,
     `pedido_id` INT NOT NULL,
-    `producto_id` INT NOT NULL,
-    INDEX (pedido_id,producto_id)
+    `producto_presentacion_id` INT NOT NULL,
+    `tipo_combo` ENUM('Producto individual','Combo'),
+    INDEX (pedido_id, tipo_combo)
 );
 
 CREATE TABLE `factura`(
@@ -158,7 +159,7 @@ ALTER TABLE
     `producto_presentacion` ADD CONSTRAINT `producto_presentacion_producto_id` FOREIGN KEY(`producto_id`) REFERENCES `producto`(`id`);
 
 ALTER TABLE
-    `detalle_pedido` ADD CONSTRAINT `detalle_pedido_producto_id` FOREIGN KEY(`producto_id`) REFERENCES `producto`(`id`);
+    `detalle_pedido` ADD CONSTRAINT `detalle_pedido_producto_presentacion_id` FOREIGN KEY(`producto_presentacion_id`) REFERENCES `producto_presentacion`(`id`);
 
 ALTER TABLE
     `producto` ADD CONSTRAINT `producto_tipo_producto_id` FOREIGN KEY(`tipo_producto_id`) REFERENCES `tipo_producto`(`id`);
